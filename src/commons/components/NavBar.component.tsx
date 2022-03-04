@@ -14,8 +14,7 @@ import { useHistory } from 'react-router';
 import { routePaths } from '../routes/routes';
 
 const pages = [
-    { name: 'Games', route: routePaths.ACTIVITIES },
-    { name: 'Learn More', route: routePaths.LEARN_MORE },
+    { name: 'Data Collection', route: routePaths.ACTIVITIES },
     { name: 'Our Purpose', route: routePaths.OUR_PURPOSE },
 ];
 
@@ -45,7 +44,7 @@ const NavBar = () => {
     );
 
     return (
-        <AppBar position="static" sx={{ backgroundColor: '#587A7F' }}>
+        <AppBar position="static" sx={{ backgroundColor: '#7DBCFF' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography
@@ -107,11 +106,11 @@ const NavBar = () => {
                         onClick={handleClick}
                         sx={{
                             flexGrow: 1,
-                            fontFamily: "'Berkshire Swash', 'sans-serif'",
+                            fontFamily: "'Quicksand', 'sans-serif'",
                             cursor: 'pointer',
                         }}
                     >
-                        nowwithfeeling ✨
+                        Haiven Shout Collection
                     </Typography>
                     <Box
                         sx={{

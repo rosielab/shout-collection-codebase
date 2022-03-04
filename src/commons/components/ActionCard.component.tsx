@@ -20,7 +20,10 @@ export default function ActionCard({
     onClick,
 }: ActionCardProps) {
     return (
-        <Card sx={{ maxWidth: 345, minWidth: 300, minHeight: 200, margin: 1 }}>
+        <Card 
+          sx={{ maxWidth: 345, minWidth: 300, minHeight: 200, margin: 1 }}
+          style={{backgroundColor: "#C2E0FF"}}
+        >
             <CardActionArea sx={{ height: '100%' }} onClick={onClick}>
                 {imageUrl && (
                     <CardMedia
@@ -31,10 +34,16 @@ export default function ActionCard({
                     />
                 )}
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography 
+                      gutterBottom variant="h5" component="div"
+                      align="justify"
+                    >
                         {header}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography 
+                      variant="body2" color="text.secondary"
+                      align="justify"
+                    >
                         {body}
                     </Typography>
                 </CardContent>

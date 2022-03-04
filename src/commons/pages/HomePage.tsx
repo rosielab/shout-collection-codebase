@@ -1,40 +1,55 @@
-import { Container, Typography } from '@mui/material';
+import { Container, Typography, Grid } from '@mui/material';
 import ActionCard from '../components/ActionCard.component';
 import { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { routePaths } from '../routes/routes';
+import logo from './logo.png';
 
 const WebsiteInfo = () => {
     return (
         <Container>
-            <Container
-                sx={{
-                    marginBottom: 3,
-                    maxWidth: { sx: '100%', lg: '70%' },
-                }}
-            >
+        <Grid
+          container
+          direction="row"
+          alignItems="stretch"
+          spacing={0}
+        >
+          <Grid item xs={12} md={3}>
+            <Grid style={{ height: "100%" }}>
+              <img
+                  src={logo}
+                  alt="Haiven Logo"
+                  style={{
+                    maxWidth: "90%",
+                    maxHeight: "90%",
+                  }}
+              />
+            </Grid>
+          </Grid>
+          <Grid item xs={12} md={9}>
+            <Grid container spacing={{xs: 2, md: 5}} >
+              <Grid item xs={12}>
                 <Typography
-                    variant="h2"
-                    sx={{ fontWeight: 'bold', color: '#587A7F' }}
+                  variant="h2"
+                  sx={{ fontWeight: 'bold', color: '#7DBCFF', fontFamily: "'Quicksand', 'sans-serif'"}}
                 >
-                    Hello Citizen!
+                    Haiven
                 </Typography>
-                <Typography variant="h5" sx={{ marginBottom: 1 }}>
-                    Welcome to Now With Feeling
-                </Typography>
-                <Typography>
-                    We are a citizen science project! Our purpose is to collect
-                    and analyze data with the help of you, fellow citizen! Using
-                    this data, we want to help people that don’t have the
-                    resources to learn more effectively through robots
-                </Typography>
-                <Typography
-                    sx={{ fontWeight: 'bold', color: '#587A7F', marginTop: 3 }}
-                >
-                    Click and select an activity below!
-                </Typography>
-            </Container>
-        </Container>
+              </Grid>
+              <Grid item xs={12} >
+                  <Typography variant="h5" sx={{ marginBottom: 1 }}>
+                      Welcome to Haiven's data collection site
+                  </Typography>
+                  <Typography align="justify">
+                      Haiven is a non profit organization working to empower and and improve the saftey of those living
+                      with intimate partner violence. If you want to know more about our organization please click on 'Our Purpose'. We thank
+                      you very much for your support and hope that you will consider donating your voice today!
+                  </Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Container>
     );
 };
 
@@ -49,14 +64,9 @@ export default function Home() {
 
     const activityList = [
         {
-            header: "How does your voice compare to a teacher's voice?",
-            body: 'Learn about what features are in your voice like pitch mean, pitch range, and more!',
+            header: "Donate your shouts",
+            body: 'Click here to help us improve saftey of those living with intimate partner violence by better understanding shouted speech',
             onclick: () => handleClick(routePaths.TEACHER_VOICE),
-        },
-        {
-            header: 'More activities coming soon!',
-            body: 'Check back later',
-            onclick: () => {},
         },
     ];
 
