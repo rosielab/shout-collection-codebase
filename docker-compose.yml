@@ -1,0 +1,32 @@
+# Specify the version of docker-compose to use
+version: '3.8'
+
+# Define the 'services' to build with docker
+services:
+    # Name of the service
+    react:
+        # This is a fix for webpack output not working correctly
+        stdin_open: true
+        tty: true
+        # Set the reset policy if container crashes ["no", always, on-failure, unless-stopped]
+        restart: unless-stopped
+        # Select which Dockerfile to use to build container
+        build:
+            # Specify the location and Dockerfile to use
+            context: .
+            dockerfile: Dockerfile.dev
+        # Specify the ports to use (local port:port inside container)
+        ports:
+            - '3000:3000'
+        # Set the local folders to map into the container (files live locally instead of inside the container)
+        volumes:
+            # First entry are folder(s) to ignore (use the folder inside the container instead)
+            - /frontend/node_modules
+            # Second entry are folder(s) to map to container
+            - .:/frontend
+        # Following section can be used to place public environment variables
+        # environment:
+            # example for PostgreSQL
+            # - PGUSER=postgres
+            # - PGHOST=postgres
+            # - PGDATABASE=postgres
