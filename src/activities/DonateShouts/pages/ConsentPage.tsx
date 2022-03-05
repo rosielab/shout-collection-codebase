@@ -95,7 +95,7 @@ export const ConsentPage = ({
                             color: 'red',
                         }}
                     >
-                        You will have to accept and read the consent form to
+                        You will have to accept at least one option and read the consent form to
                         participate.
                     </Typography>
                 )}

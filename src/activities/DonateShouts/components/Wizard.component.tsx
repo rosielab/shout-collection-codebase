@@ -13,10 +13,7 @@ import {
     getUserAnswersDefaultState,
     UserAnswersObject,
 } from '../helpers/userAnswers';
-import { getRecordingData } from '../helpers/recordingData';
 import { userQuestionAnswerValid } from '../helpers/validator';
-import { scenerios } from '../helpers/scenerios';
-import { allScripts } from '../helpers/scripts';
 import { SubmitAlert, ALERT_MODE } from './alerts/SubmitAlert.component';
 import { MessageAlert } from './alerts/MessageAlert.component';
 import { pollResults, sendS3, sendUserData } from '../apis/apis';
@@ -84,9 +81,9 @@ export const Wizard = (props: any) => {
     const [answers, setAnswer] = useState<UserAnswersObject>(
         getUserAnswersDefaultState(canonicalUserID)
     );
-    const [recordingData, setRecordingData] = useState(
-        getRecordingData(scenerios, allScripts)
-    );
+    //const [recordingData, setRecordingData] = useState(
+      //  getRecordingData(scenerios, allScripts)
+    //);
     const [showSubmitAudioModal, setShowSubmitAudioModal] = useState(false);
     const [showMessageAlert, setShowMessageAlert] = useState(false);
     interface MessageAlert {

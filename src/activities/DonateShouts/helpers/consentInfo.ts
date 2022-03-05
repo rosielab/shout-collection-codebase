@@ -17,7 +17,7 @@ export const consentInfo = [
     },
     {
         title: 'Risks/Discomforts',
-        body: 'We do not think there is anything in this study that could harm you. It should be noted that this study will involve the need to repeatedly yell, if you are concerned that this may cause your neighbours distress or result in punitive action please make them aware and check your surroundings before participating in the study.',
+        body: 'We do not think there is anything in this study that could harm you. It should be noted that this study will involve the need to repeatedly yell random phrases such as "banana and mustard sandwiches", if you are concerned that this may cause your neighbours distress or result in punitive action please make them aware and check your surroundings before participating in the study.',
     },
     {
         title: 'Benefits',
