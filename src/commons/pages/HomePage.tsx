@@ -41,12 +41,12 @@ const WebsiteInfo = () => {
                             </Typography>
                             <Typography align="justify">
                                 Haiven is a non profit organization working to
-                                empower and and improve the saftey of those
-                                living with intimate partner violence. If you
-                                want to know more about our organization please
-                                click on 'Our Purpose'. We thank you very much
-                                for your support and hope that you will consider
-                                donating your voice today!
+                                empower and improve the safety of those living
+                                with intimate partner violence. If you want to
+                                know more about our organization please click on
+                                'Our Purpose'. We thank you very much for your
+                                support and hope that you will consider donating
+                                your voice today!
                             </Typography>
                         </Grid>
                     </Grid>
@@ -68,7 +68,7 @@ export default function Home() {
     const activityList = [
         {
             header: 'Donate your shouts',
-            body: 'Click here to help us improve saftey of those living with intimate partner violence by better understanding shouted speech',
+            body: 'Click here to help us improve safety of those living with intimate partner violence by better understanding shouted speech',
             onclick: () => handleClick(routePaths.TEACHER_VOICE),
         },
     ];
