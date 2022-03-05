@@ -142,15 +142,19 @@ export const Wizard = (props: any) => {
     const recordingPages = useMemo(
         () =>
             phonePositions.map((phonePosition, idx) => {
-                // @ts-ignore
                 const script =
                     scriptObj[
-                        getRandomIntInclusive(1, Object.keys(scriptObj).length)
+                        getRandomIntInclusive(
+                            1,
+                            Object.keys(scriptObj).length
+                        ) as keyof typeof scriptObj
                     ];
-                // @ts-ignore
                 const affect =
                     affectObj[
-                        getRandomIntInclusive(1, Object.keys(affectObj).length)
+                        getRandomIntInclusive(
+                            1,
+                            Object.keys(affectObj).length
+                        ) as keyof typeof affectObj
                     ];
                 return (
                     <RecordingPage
