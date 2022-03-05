@@ -1,4 +1,4 @@
-import { Container, Typography, Grid } from '@mui/material';
+import { Container, Grid, Link, Typography } from '@mui/material';
 import ActionCard from '../components/ActionCard.component';
 import { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -43,10 +43,13 @@ const WebsiteInfo = () => {
                                 Haiven is a non profit organization working to
                                 empower and improve the safety of those living
                                 with intimate partner violence. If you want to
-                                know more about our organization please click on
-                                'Our Purpose'. We thank you very much for your
-                                support and hope that you will consider donating
-                                your voice today!
+                                know more about our organization please read{' '}
+                                <Link href="/ourPurpose" underline="none">
+                                    Our Purpose
+                                </Link>
+                                . We thank you very much for your support and
+                                hope that you will consider donating your voice
+                                today!
                             </Typography>
                         </Grid>
                     </Grid>
