@@ -27,7 +27,7 @@ const scriptObj = {
     4: 'another dog secretary show',
     5: 'snow meteor down the chimney',
     6: 'birds make new jingles',
-    7: 'heavy undersea birthday pumkins',
+    7: 'heavy undersea birthday pumpkins',
     8: 'fluffy baseboard yogurt division',
     9: 'zebra cats walking on lamps',
     10: 'five special guest treasures',
