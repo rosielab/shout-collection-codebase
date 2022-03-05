@@ -21,52 +21,52 @@ import { useInterval } from '../hooks/useInterval';
 import { STEP_PAGE } from '../helpers/wizardHelpers';
 
 const scriptObj = {
-    1: "banana and mustard sandwiches",
-    2: "wolf ring lights are fantastic",
-    3: "hungry action hippos fruit",
-    4: "another dog secretary show",
-    5: "snow meteor down the chimney",
-    6: "birds make new jingles",
-    7: "heavy undersea birthday pumkins",
-    8: "fluffy baseboard yogurt division",
-    9: "zebra cats walking on lamps",
-    10: "five special guest treasures",
-    11: "ripped ocean jumper",
-    12: "five dollar slaw onion cure",
-    13: "the thunder break craze",
-    14: "join the Ear Look club",
+    1: 'banana and mustard sandwiches',
+    2: 'wolf ring lights are fantastic',
+    3: 'hungry action hippos fruit',
+    4: 'another dog secretary show',
+    5: 'snow meteor down the chimney',
+    6: 'birds make new jingles',
+    7: 'heavy undersea birthday pumkins',
+    8: 'fluffy baseboard yogurt division',
+    9: 'zebra cats walking on lamps',
+    10: 'five special guest treasures',
+    11: 'ripped ocean jumper',
+    12: 'five dollar slaw onion cure',
+    13: 'the thunder break craze',
+    14: 'join the Ear Look club',
 };
 
 const affectObj = {
-    1: "neutral",
-    2: "anger",
-    3: "joy",
-    4: "fear",
-    5: "disgust",
-    6: "surprise",
-    7: "sadness",
+    1: 'neutral',
+    2: 'anger',
+    3: 'joy',
+    4: 'fear',
+    5: 'disgust',
+    6: 'surprise',
+    7: 'sadness',
 };
 
 const phonePositions = [
-    "Hold your phone next to your face with the mic facing your mouth as you would in a phone conversation",
-    "Hold your phone next to your face but with the mic/phone facing away from your face",
-    "Hold your phone next to your face with your hand covering the mic",
-    "Hold your phone next to your hip with the back of phone on your palm",
-    "Hold your phone next to your hip with your hand covering the mic",
-    "Place your phone in your pocket",
-    "Place your phone in a bag and hold it next to your hip",
-    "Place phone 1-2 meters away face up on any surface",
-    "Place phone 1-2 meters away face down on a hard surface",
-    "Place phone 1-2 meters away face down on a soft surface",
-    "Place phone 1-2 meters away in a bag",
-    "Place phone on the opposite side of the room face up on any surface",
-    "Place phone on the opposite side of the room face down on a hard surface",
-    "Place phone on the opposite side of the room face down on a soft surface",
-    "Place phone on the opposite side of the room in a bag",
-    "Place phone as far away as possible while on on the opposite side of a wall from you face up on any surface",
-    "Place phone as far away as possible while on on the opposite side of a wall from you face down on a hard surface",
-    "Place phone as far away as possible while on on the opposite side of a wall from you face down on a soft surface",
-    "Place phone as far away as possible while on on the opposite side of a wall from you in a bag",
+    'Hold your phone next to your face with the mic facing your mouth as you would in a phone conversation',
+    'Hold your phone next to your face but with the mic/phone facing away from your face',
+    'Hold your phone next to your face with your hand covering the mic',
+    'Hold your phone next to your hip with the back of phone on your palm',
+    'Hold your phone next to your hip with your hand covering the mic',
+    'Place your phone in your pocket',
+    'Place your phone in a bag and hold it next to your hip',
+    'Place phone 1-2 meters away face up on any surface',
+    'Place phone 1-2 meters away face down on a hard surface',
+    'Place phone 1-2 meters away face down on a soft surface',
+    'Place phone 1-2 meters away in a bag',
+    'Place phone on the opposite side of the room face up on any surface',
+    'Place phone on the opposite side of the room face down on a hard surface',
+    'Place phone on the opposite side of the room face down on a soft surface',
+    'Place phone on the opposite side of the room in a bag',
+    'Place phone as far away as possible while on on the opposite side of a wall from you face up on any surface',
+    'Place phone as far away as possible while on on the opposite side of a wall from you face down on a hard surface',
+    'Place phone as far away as possible while on on the opposite side of a wall from you face down on a soft surface',
+    'Place phone as far away as possible while on on the opposite side of a wall from you in a bag',
 ];
 
 function getRandomIntInclusive(min: number, max: number): number {
@@ -82,7 +82,7 @@ export const Wizard = (props: any) => {
         getUserAnswersDefaultState(canonicalUserID)
     );
     //const [recordingData, setRecordingData] = useState(
-      //  getRecordingData(scenerios, allScripts)
+    //  getRecordingData(scenerios, allScripts)
     //);
     const [showSubmitAudioModal, setShowSubmitAudioModal] = useState(false);
     const [showMessageAlert, setShowMessageAlert] = useState(false);
@@ -101,9 +101,10 @@ export const Wizard = (props: any) => {
     const [audioId, setAudioId] = useState<string>();
     const [pollFlag, setPollFlag] = useState<Boolean>(false);
     const [pollingRetriesCount, setPollingRetriesCount] = useState<number>(0);
-    const [hasUserConsentResearch, setHasUserConsentResearch] = useState<boolean>(false);
-    const [hasUserConsentCommercial, setHasUserConsentCommercial] = useState<boolean>(false);
-
+    const [hasUserConsentResearch, setHasUserConsentResearch] =
+        useState<boolean>(false);
+    const [hasUserConsentCommercial, setHasUserConsentCommercial] =
+        useState<boolean>(false);
 
     const handleAnswerChange = useCallback((answer: UserAnswersObject) => {
         setAnswer(answer);
@@ -122,7 +123,7 @@ export const Wizard = (props: any) => {
             buttonTitle: buttonTitle,
         });
         setShowMessageAlert(true);
-    }
+    };
 
     const handlePrevStep = () => {
         if (step > 0) setStep(step - 1);
@@ -135,29 +136,39 @@ export const Wizard = (props: any) => {
         }
 
         if (step < MAX_PAGES) setStep(step + 1);
-        if (step === MAX_PAGES-1) setStep(pages.length-1);
+        if (step === MAX_PAGES - 1) setStep(pages.length - 1);
     };
 
-    const recordingPages = useMemo(() => phonePositions.map((phonePosition, idx) => {
-        // @ts-ignore
-        const script = scriptObj[getRandomIntInclusive(1, Object.keys(scriptObj).length)];
-        // @ts-ignore
-        const affect = affectObj[getRandomIntInclusive(1, Object.keys(affectObj).length)];
-        return (
-            <RecordingPage
-                phonePosition={phonePosition}
-                script={script}
-                affect={affect}
-            />
-        )
-    }), []);
+    const recordingPages = useMemo(
+        () =>
+            phonePositions.map((phonePosition, idx) => {
+                // @ts-ignore
+                const script =
+                    scriptObj[
+                        getRandomIntInclusive(1, Object.keys(scriptObj).length)
+                    ];
+                // @ts-ignore
+                const affect =
+                    affectObj[
+                        getRandomIntInclusive(1, Object.keys(affectObj).length)
+                    ];
+                return (
+                    <RecordingPage
+                        phonePosition={phonePosition}
+                        script={script}
+                        affect={affect}
+                    />
+                );
+            }),
+        []
+    );
 
     const pages = [
         <ConsentPage
-          hasUserConsentResearch={hasUserConsentResearch}
-          setHasUserConsentResearch={setHasUserConsentResearch}
-          hasUserConsentCommercial={hasUserConsentCommercial}
-          setHasUserConsentCommercial={setHasUserConsentCommercial}
+            hasUserConsentResearch={hasUserConsentResearch}
+            setHasUserConsentResearch={setHasUserConsentResearch}
+            hasUserConsentCommercial={hasUserConsentCommercial}
+            setHasUserConsentCommercial={setHasUserConsentCommercial}
         />,
         ...questions.map((question, index) => (
             <QuestionsPage
@@ -168,16 +179,16 @@ export const Wizard = (props: any) => {
                 setAnswer={handleAnswerChange}
             />
         )),
-        <InstructionsPage/>,
+        <InstructionsPage />,
         ...recordingPages,
-        <ThankYouPage/>
+        <ThankYouPage />,
     ];
 
     const MAX_PAGES = pages.length - 1;
 
     const onRecordingPage =
         step === STEP_PAGE.FIRST_RECORDING ||
-        (step > STEP_PAGE.FIRST_RECORDING && step <  MAX_PAGES);
+        (step > STEP_PAGE.FIRST_RECORDING && step < MAX_PAGES);
 
     const processAudio = async () => {
         if (!recordingBlob) return;
@@ -188,9 +199,9 @@ export const Wizard = (props: any) => {
             }
             const fileID = await sendS3(recordingBlob, {
                 userID: canonicalUserID,
-                phoneposition: "blah",
-                affect: "blah",
-                script: "blah",
+                phoneposition: 'blah',
+                affect: 'blah',
+                script: 'blah',
             });
 
             // for now only poll for the first audio
@@ -207,7 +218,9 @@ export const Wizard = (props: any) => {
              * @PAIGE This is why the button wasn't being disabled, it was erroring but you weren't emptying the RecordingBlob
              * @todo @colim
              */
-            console.error("RESETTING RECORDING BLOB EVEN THOUGH IT WAS NOT SUCCESSFUL, REMOVE IN PRODUCTION");
+            console.error(
+                'RESETTING RECORDING BLOB EVEN THOUGH IT WAS NOT SUCCESSFUL, REMOVE IN PRODUCTION'
+            );
             setRecordingBlob(undefined);
         }
     };
@@ -280,12 +293,9 @@ export const Wizard = (props: any) => {
         return true;
     };
 
-    const showBackButton =
-        step !== 0 &&
-        step <= STEP_PAGE.FIRST_RECORDING
-    
-    const showNextButton =
-        step !== MAX_PAGES;
+    const showBackButton = step !== 0 && step <= STEP_PAGE.FIRST_RECORDING;
+
+    const showNextButton = step !== MAX_PAGES;
 
     const inputItem = () => {
         // this forces the recorder to re-render and restart all of its internal states
@@ -322,7 +332,7 @@ export const Wizard = (props: any) => {
                         <Button
                             variant="contained"
                             style={{
-                                backgroundColor: "#7DBCFF",
+                                backgroundColor: '#7DBCFF',
                             }}
                             sx={{
                                 order: { xs: 1, sm: 0 },
@@ -340,7 +350,7 @@ export const Wizard = (props: any) => {
                         <Button
                             variant="contained"
                             style={{
-                                backgroundColor: "#7DBCFF",
+                                backgroundColor: '#7DBCFF',
                             }}
                             onClick={handleNextStep}
                             disabled={!canGoToNext()}
