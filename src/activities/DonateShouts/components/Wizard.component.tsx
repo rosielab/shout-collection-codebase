@@ -48,26 +48,32 @@ const affectObj = {
 };
 
 const phonePositions = [
-    "Hold your phone next to your face with the mic facing your mouth as you would in a phone conversation",
-    "Hold your phone next to your face but with the mic/phone facing away from your face",
-    "Hold your phone next to your face with your hand covering the mic",
-    "Hold your phone next to your hip with the back of phone on your palm",
-    "Hold your phone next to your hip with your hand covering the mic",
-    "Place your phone in your pocket",
-    "Place your phone in a bag and hold it next to your hip",
-    "Place phone 1-2 meters away face up on any surface",
-    "Place phone 1-2 meters away face down on a hard surface",
-    "Place phone 1-2 meters away face down on a soft surface",
-    "Place phone 1-2 meters away in a bag",
-    "Place phone on the opposite side of the room face up on any surface",
-    "Place phone on the opposite side of the room face down on a hard surface",
-    "Place phone on the opposite side of the room face down on a soft surface",
-    "Place phone on the opposite side of the room in a bag",
-    "Place phone as far away as possible while on on the opposite side of a wall from you face up on any surface",
-    "Place phone as far away as possible while on on the opposite side of a wall from you face down on a hard surface",
-    "Place phone as far away as possible while on on the opposite side of a wall from you face down on a soft surface",
-    "Place phone as far away as possible while on on the opposite side of a wall from you in a bag",
+    "Hold your phone next to your face with the mic facing your mouth as you would in a phone conversation 1/19",
+    "Hold your phone next to your face but with the mic/phone facing away from your face 2/19",
+    "Hold your phone next to your face with your hand covering the mic 3/19",
+    "Hold your phone next to your hip with the back of phone on your palm 4/19",
+    "Hold your phone next to your hip with your hand covering the mic 5/19",
+    "Place your phone in your pocket 6/19",
+    "Place your phone in a bag and hold it next to your hip 7/19",
+    "Place phone 1-2 meters away face up on any surface 8/19",
+    "Place phone 1-2 meters away face down on a hard surface 9/19",
+    "Place phone 1-2 meters away face down on a soft surface 10/19",
+    "Place phone 1-2 meters away in a bag 11/19",
+    "Place phone on the opposite side of the room face up on any surface 12/19",
+    "Place phone on the opposite side of the room face down on a hard surface 13/19",
+    "Place phone on the opposite side of the room face down on a soft surface 14/19",
+    "Place phone on the opposite side of the room in a bag 15/19",
+    "Place phone as far away as possible while on on the opposite side of a wall from you face up on any surface 16/19",
+    "Place phone as far away as possible while on on the opposite side of a wall from you face down on a hard surface 17/19",
+    "Place phone as far away as possible while on on the opposite side of a wall from you face down on a soft surface 18/19",
+    "Place phone as far away as possible while on on the opposite side of a wall from you in a bag 19/19",
 ];
+
+interface RecordingPageData {
+    phoneposition: string | null;
+    script: number | null;
+    affect: number | null;
+};
 
 function getRandomIntInclusive(min: number, max: number): number {
     min = Math.ceil(min);
@@ -103,6 +109,7 @@ export const Wizard = (props: any) => {
     const [pollingRetriesCount, setPollingRetriesCount] = useState<number>(0);
     const [hasUserConsentResearch, setHasUserConsentResearch] = useState<boolean>(false);
     const [hasUserConsentCommercial, setHasUserConsentCommercial] = useState<boolean>(false);
+    const [allRecordingPageData, setAllRecordingPageData] = useState<Array<RecordingPageData>>([]);
 
 
     const handleAnswerChange = useCallback((answer: UserAnswersObject) => {
@@ -143,6 +150,14 @@ export const Wizard = (props: any) => {
         const script = scriptObj[getRandomIntInclusive(1, Object.keys(scriptObj).length)];
         // @ts-ignore
         const affect = affectObj[getRandomIntInclusive(1, Object.keys(affectObj).length)];
+        setAllRecordingPageData(prevAllRecordingPageData => [
+            ...prevAllRecordingPageData,
+            {
+                phoneposition: phonePosition,
+                affect,
+                script,
+            }
+        ]);
         return (
             <RecordingPage
                 phonePosition={phonePosition}
@@ -152,7 +167,7 @@ export const Wizard = (props: any) => {
         )
     }), []);
 
-    const pages = [
+    const pagesBeforeRecordingPages = [
         <ConsentPage
           hasUserConsentResearch={hasUserConsentResearch}
           setHasUserConsentResearch={setHasUserConsentResearch}
@@ -170,8 +185,16 @@ export const Wizard = (props: any) => {
             />
         )),
         <InstructionsPage/>,
+    ];
+
+    const pagesAfterRecordingPages = [
+        <ThankYouPage/>,
+    ];
+
+    const pages = [
+        ...pagesBeforeRecordingPages,
         ...recordingPages,
-        <ThankYouPage/>
+        ...pagesAfterRecordingPages,
     ];
 
     const MAX_PAGES = pages.length - 1;
@@ -184,15 +207,19 @@ export const Wizard = (props: any) => {
         if (!recordingBlob) return;
         try {
             if (step === STEP_PAGE.FIRST_RECORDING) {
-                console.log(answers)
                 const formatData = formatUserData(answers);
                 await sendUserData(formatData);
             }
+            const {
+                phoneposition,
+                affect,
+                script,
+            } = allRecordingPageData[step - pagesBeforeRecordingPages.length];
             const fileID = await sendS3(recordingBlob, {
                 userID: canonicalUserID,
-                phoneposition: "blah",
-                affect: "blah",
-                script: "blah",
+                phoneposition,
+                affect,
+                script,
             });
 
             // for now only poll for the first audio
@@ -286,7 +313,7 @@ export const Wizard = (props: any) => {
     const showBackButton =
         step !== 0 &&
         step <= STEP_PAGE.FIRST_RECORDING
-    
+
     const showNextButton =
         step !== MAX_PAGES;
 

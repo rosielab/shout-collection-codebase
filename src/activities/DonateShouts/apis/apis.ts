@@ -3,7 +3,19 @@ import * as uuid from 'uuid';
 
 const BASE_URL = "http://localhost:8080/api"; //Change to env var
 
+
+/**
+ * Send Audio to Amazon's S3 cloud storage
+ * @param {Blob} blob - User's audio recording
+ * @param {*} metaData - Object which holds the scenerio presented to the user in the form {                
+ *              userID: string,
+                audience: string,
+                environment: string,
+                script: string
+            } 
+ */
 export async function sendS3(blob: Blob, metaData: any) {
+    const URL = `https://9ml78r5eaj.execute-api.ca-central-1.amazonaws.com/dev/haiven-shout-data-collect-GetPresignedUrlAndStoreM-vGxHgxBaP0LD`;
     let id: string = uuid.v4();
     let fileName = `shout_data_${id}`;
     let fileType = 'audio/wav';
@@ -11,23 +23,29 @@ export async function sendS3(blob: Blob, metaData: any) {
 
     try {
         // Get the s3 location on where to put the audio file
-        const response: any = await axios.post("https://9ml78r5eaj.execute-api.ca-central-1.amazonaws.com/dev/haiven-shout-data-collect-GetPresignedUrlAndStoreM-vGxHgxBaP0LD", {
+        const response: any = await axios.post(URL, {
             fileName: fileName,
             fileType: fileType,
             metaData: metaData,
         });
-        console.log(response.data.data.signedRequest)
-        var signedRequest = response.data.data.signedRequest;
+        var signedPostRequest = response.data;
+        var fields = signedPostRequest.fields;
+
         var options = {
             headers: {
-                'Content-Type': fileType,
+                'Content-Type': 'multipart/form-data',
             },
         };
 
         // Put audio file into s3 bucket
-        console.log("request")
-        console.log(signedRequest)
-        await axios.post(signedRequest, blob, options);
+        var bodyFormData = new FormData();
+        for (var key in fields) {
+            bodyFormData.append(key, fields[key]);
+        }
+
+        bodyFormData.append('file', blob, fileName);
+        await axios.post(signedPostRequest.url, bodyFormData, options);
+
         return fileName;
     } catch (error) {
         throw new Error(`Audio Failed to update: ${error}`);
