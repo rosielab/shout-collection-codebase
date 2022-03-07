@@ -229,16 +229,12 @@ export const Wizard = (props: any) => {
             setAlertMode(ALERT_MODE.SUCCESS);
             setRecordingBlob(undefined);
         } catch (e) {
-            //TESTING
-            //setAlertMode(ALERT_MODE.FAILED);
-            setAlertMode(ALERT_MODE.SUCCESS);
-            /**
-             * @PAIGE This is why the button wasn't being disabled, it was erroring but you weren't emptying the RecordingBlob
-             * @todo @colim
-             */
             console.log(e);
-            console.error("RESETTING RECORDING BLOB EVEN THOUGH IT WAS NOT SUCCESSFUL, REMOVE IN PRODUCTION");
-            setRecordingBlob(undefined);
+            setAlertMode(ALERT_MODE.FAILED);
+            //TESTING
+            //setAlertMode(ALERT_MODE.SUCCESS);
+            //console.error("RESETTING RECORDING BLOB EVEN THOUGH IT WAS NOT SUCCESSFUL, REMOVE IN PRODUCTION");
+            //setRecordingBlob(undefined);
         }
     };
 
