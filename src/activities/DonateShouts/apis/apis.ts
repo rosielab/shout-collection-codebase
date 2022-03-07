@@ -1,22 +1,22 @@
 import axios from 'axios';
 import * as uuid from 'uuid';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL; //Change to env var
+const BASE_URL = "http://localhost:8080/api"; //Change to env var
 
 export async function sendS3(blob: Blob, metaData: any) {
-    // TODO: Come up with a better naming schema
     let id: string = uuid.v4();
-    let fileName = `citizen_audio_${id}`;
+    let fileName = `shout_data_${id}`;
     let fileType = 'audio/wav';
     metaData['audioID'] = fileName;
 
     try {
         // Get the s3 location on where to put the audio file
-        const response: any = await axios.post(`${BASE_URL}/uploadS3`, {
+        const response: any = await axios.post("https://9ml78r5eaj.execute-api.ca-central-1.amazonaws.com/dev/haiven-shout-data-collect-GetPresignedUrlAndStoreM-vGxHgxBaP0LD", {
             fileName: fileName,
             fileType: fileType,
             metaData: metaData,
         });
+        console.log(response.data.data.signedRequest)
         var signedRequest = response.data.data.signedRequest;
         var options = {
             headers: {
@@ -25,7 +25,9 @@ export async function sendS3(blob: Blob, metaData: any) {
         };
 
         // Put audio file into s3 bucket
-        await axios.put(signedRequest, blob, options);
+        console.log("request")
+        console.log(signedRequest)
+        await axios.post(signedRequest, blob, options);
         return fileName;
     } catch (error) {
         throw new Error(`Audio Failed to update: ${error}`);
@@ -33,10 +35,9 @@ export async function sendS3(blob: Blob, metaData: any) {
 }
 
 export async function sendUserData(data: any) {
-    const URL = process.env.REACT_APP_USER_DATA_LAMBDA;
     if (!URL) throw new Error(`No USER DATA ENDPOINT`);
     try {
-        const response = await axios.post(URL, data, {
+        const response = await axios.post("https://a7uhkhvmh3.execute-api.ca-central-1.amazonaws.com/default/haiven-shout-data-collect-WriteUserDataToDynamoFun-bENtV8zxlg0V", data, {
             headers: {
                 'content-type': 'application/json',
             },
