@@ -16,35 +16,6 @@ interface QuestionsPageProps {
     ) => void;
 }
 
-const AdditionalQuestionField = ({
-    additionalQuestion,
-    handleChange,
-    getCurVal,
-    answers,
-}: any) => {
-    const questionHasNoConditions = additionalQuestion?.condition === null;
-    const questionConditionIsFullfilled =
-        additionalQuestion?.condition?.answer ===
-        answers[additionalQuestion?.condition?.key];
-    const showAdditionalQuestion =
-        questionHasNoConditions || questionConditionIsFullfilled;
-    if (showAdditionalQuestion) {
-        return (
-            <FieldType
-                handleChange={handleChange}
-                getCurVal={getCurVal}
-                key={additionalQuestion.key}
-                question={additionalQuestion.question}
-                answerKey={additionalQuestion.key}
-                options={additionalQuestion.options}
-                questionType={additionalQuestion.type}
-                keysToClear={additionalQuestion?.clearIfChange}
-            />
-        );
-    }
-    return <></>;
-};
-
 export const QuestionsPage = ({
     question,
     answers,
@@ -96,26 +67,6 @@ export const QuestionsPage = ({
                 questionType={question.type}
                 keysToClear={question?.clearIfChange}
             />
-            {question?.followUpQuestions &&
-                question.followUpQuestions.map((additionalQuestion: any) => (
-                    <AdditionalQuestionField
-                        answers={answers}
-                        handleChange={handleChange}
-                        getCurVal={getCurVal}
-                        key={additionalQuestion.key}
-                        additionalQuestion={additionalQuestion}
-                    />
-                ))}
-            {question?.showCheckboxOptional && (
-                <FieldType
-                    handleChange={handleChange}
-                    getCurVal={getCurVal}
-                    answerKey={question.key}
-                    options={['Prefer not to disclose']}
-                    questionType={'skipCheckbox'}
-                    keysToClear={question?.clearIfChange}
-                />
-            )}
         </Container>
     );
 };

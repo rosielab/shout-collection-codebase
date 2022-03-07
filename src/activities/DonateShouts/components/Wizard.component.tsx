@@ -158,6 +158,7 @@ export const Wizard = (props: any) => {
           setHasUserConsentResearch={setHasUserConsentResearch}
           hasUserConsentCommercial={hasUserConsentCommercial}
           setHasUserConsentCommercial={setHasUserConsentCommercial}
+          setAnswer={setAnswer}
         />,
         ...questions.map((question, index) => (
             <QuestionsPage
@@ -183,6 +184,7 @@ export const Wizard = (props: any) => {
         if (!recordingBlob) return;
         try {
             if (step === STEP_PAGE.FIRST_RECORDING) {
+                console.log(answers)
                 const formatData = formatUserData(answers);
                 await sendUserData(formatData);
             }
@@ -207,6 +209,7 @@ export const Wizard = (props: any) => {
              * @PAIGE This is why the button wasn't being disabled, it was erroring but you weren't emptying the RecordingBlob
              * @todo @colim
              */
+            console.log(e);
             console.error("RESETTING RECORDING BLOB EVEN THOUGH IT WAS NOT SUCCESSFUL, REMOVE IN PRODUCTION");
             setRecordingBlob(undefined);
         }

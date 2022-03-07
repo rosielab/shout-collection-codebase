@@ -49,38 +49,18 @@ export const questions: Array<UserQuestion> = [
                 'Our website will have features in the feature for you to learn more about our discoveries. Check back later!',
         },
     },
-    {
-        question: 'What is your gender?',
-        options: ['Male', 'Female', 'Prefer not to disclose'],
-        type: 'radio',
-        key: 'gender',
-        followUpQuestions: [
-            {
-                question: 'How do you identify?',
-                options: [
-                    'Man',
-                    'Woman',
-                    'Non-Binary',
-                    'Prefer to self-describe',
-                    'Prefer not to disclose',
-                ],
-                type: 'radio',
-                condition: null,
-                key: 'genderIdentity',
-                clearIfChange: ['describedIdentity'],
-            },
-            {
-                question: 'Self-Describe:',
-                options: [''],
-                type: 'text',
-                key: 'describedIdentity',
-                condition: {
-                    key: 'genderIdentity',
-                    answer: 'Prefer to self-describe',
-                },
-            },
-        ],
-    },
+      {
+          question: 'What is your gender?',
+          options: [
+              'Man',
+              'Woman',
+              'Non-Binary',
+              'Other',
+              'Prefer not to disclose',
+          ],
+          type: 'radio',
+          key: 'gender'
+      },
     {
         question: 'What is the the first language you learned?',
         key: 'firstLanguage',

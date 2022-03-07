@@ -2,11 +2,11 @@ export interface UserAnswersObject {
     userID: string;
     age: string | null;
     gender: string | null;
-    genderIdentity: string | null;
-    describedIdentity: string | null;
     firstLanguage: string | null;
     currentLanguage: string | null;
     phoneModel: string | null;
+    consentresearch: boolean | null;
+    consentcommercial: boolean | null;
 }
 
 export type UserAnswersObjectKeys = keyof UserAnswersObject;
@@ -18,11 +18,11 @@ export const getUserAnswersDefaultState = (
         userID: canonicalUserID,
         age: null,
         gender: null,
-        genderIdentity: null,
-        describedIdentity: null,
         firstLanguage: null,
         currentLanguage: null,
         phoneModel: null,
+        consentresearch: null,
+        consentcommercial: null,
     };
 };
 

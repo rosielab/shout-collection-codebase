@@ -4,7 +4,7 @@ import { OurPurpose } from '../pages/OurPurpose';
 
 export const routePaths = {
     ACTIVITIES: '/',
-    TEACHER_VOICE: '/teacherVoice',
+    DONATE_SHOUTS: '/donateShouts',
     OUR_PURPOSE: '/ourPurpose',
 };
 
@@ -14,7 +14,7 @@ export const routes = [
         component: Activities,
     },
     {
-        path: routePaths.TEACHER_VOICE,
+        path: routePaths.DONATE_SHOUTS,
         component: DontateShouts,
     },
     {

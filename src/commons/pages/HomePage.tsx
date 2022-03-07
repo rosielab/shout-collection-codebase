@@ -72,7 +72,7 @@ export default function Home() {
         {
             header: 'Donate your shouts',
             body: 'Click here to help us improve safety of those living with intimate partner violence by better understanding shouted speech',
-            onclick: () => handleClick(routePaths.TEACHER_VOICE),
+            onclick: () => handleClick(routePaths.DONATE_SHOUTS),
         },
     ];
 

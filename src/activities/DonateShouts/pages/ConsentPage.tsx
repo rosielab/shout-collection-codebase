@@ -4,6 +4,9 @@ import {
     FormControlLabel,
     Typography,
 } from '@mui/material';
+import {
+    UserAnswersObject,
+} from '../helpers/userAnswers';
 import { consentInfo } from '../helpers/consentInfo';
 
 interface ConsentPageProps {
@@ -11,6 +14,7 @@ interface ConsentPageProps {
     setHasUserConsentResearch: (hasUserConsentResearch: boolean) => void;
     hasUserConsentCommercial: boolean;
     setHasUserConsentCommercial: (hasUserConsentCommercial: boolean) => void;
+    setAnswer: (callback: any) => void;
 }
 
 export const ConsentPage = ({
@@ -18,6 +22,7 @@ export const ConsentPage = ({
     setHasUserConsentResearch,
     hasUserConsentCommercial,
     setHasUserConsentCommercial,
+    setAnswer,
 }: ConsentPageProps) => {
     return (
         <Container>
@@ -63,9 +68,15 @@ export const ConsentPage = ({
                 <FormControlLabel
                     control={
                         <Checkbox
-                            onChange={(e) =>
-                                setHasUserConsentResearch(e.target.checked)
-                            }
+                            onChange={(e) => {
+                                setAnswer((oldAnswer: UserAnswersObject) => {
+                                    return {
+                                        ...oldAnswer,
+                                        consentresearch: e.target.checked,
+                                    }
+                                });
+                                setHasUserConsentResearch(e.target.checked);
+                            }}
                             checked={hasUserConsentResearch}
                         />
                     }
@@ -77,9 +88,15 @@ export const ConsentPage = ({
                 <FormControlLabel
                     control={
                         <Checkbox
-                            onChange={(e) =>
+                            onChange={(e) => {
+                                setAnswer((oldAnswer: UserAnswersObject) => {
+                                    return {
+                                        ...oldAnswer,
+                                        consentcommercial: e.target.checked,
+                                    }
+                                });
                                 setHasUserConsentCommercial(e.target.checked)
-                            }
+                            }}
                             checked={hasUserConsentCommercial}
                         />
                     }
