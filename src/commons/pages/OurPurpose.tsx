@@ -51,6 +51,11 @@ export const OurPurpose = () => {
               own decisions and choose what’s best for them.
             </Typography>
         </Typography>
+        <Typography variant="body1" sx={{ marginBottom: 2 }}>
+            <Typography sx={{ marginBottom: 2 }}>
+              Our full website is coming soon! If you would like to contact us please email: hello.haiven(at)gmail(dot)com
+            </Typography>
+        </Typography>
       </Container>
     );
 };

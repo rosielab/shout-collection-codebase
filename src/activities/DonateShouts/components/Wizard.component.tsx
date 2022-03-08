@@ -19,6 +19,7 @@ import { MessageAlert } from './alerts/MessageAlert.component';
 import { pollResults, sendS3, sendUserData } from '../apis/apis';
 import { useInterval } from '../hooks/useInterval';
 import { STEP_PAGE } from '../helpers/wizardHelpers';
+import { useCookies } from 'react-cookie';
 
 const scriptObj = {
     1: "banana and mustard sandwiches",
@@ -82,11 +83,24 @@ function getRandomIntInclusive(min: number, max: number): number {
 }
 
 export const Wizard = (props: any) => {
-    const [step, setStep] = useState(0);
-    const [canonicalUserID] = useState(`user_${uuid.v4()}`);
+    const [step, setStep] = useState(-1);
+    const [canonicalUserID, setCanonicalUserID] = useState(`user_${uuid.v4()}`);
     const [answers, setAnswer] = useState<UserAnswersObject>(
         getUserAnswersDefaultState(canonicalUserID)
     );
+    const [stepCookies, setStepCookie, removeStepCookie] = useCookies(['step']);
+    const [userCookies, setUserCookie, removeUserCookie] = useCookies(['userID']);
+    const [newUser, setNewUser] = useState(false);
+
+    useEffect(() => {
+        if(userCookies["userID"] === undefined && stepCookies["step"] === undefined) {
+          setNewUser(true);
+          setUserCookie("userID", canonicalUserID, {path: '/'})
+          setStepCookie("step", 0, {path: '/'})
+          setStep(0)
+        }
+      }, [])
+
     //const [recordingData, setRecordingData] = useState(
       //  getRecordingData(scenerios, allScripts)
     //);
@@ -133,16 +147,28 @@ export const Wizard = (props: any) => {
 
     const handlePrevStep = () => {
         if (step > 0) setStep(step - 1);
+        setStepCookie("step", step - 1, {path: '/'})
     };
 
-    const handleNextStep = () => {
+    const handleNextStep = async () => {
         if (onRecordingPage) {
             setShowSubmitAudioModal(true);
             return;
         }
-
-        if (step < MAX_PAGES) setStep(step + 1);
-        if (step === MAX_PAGES-1) setStep(pages.length-1);
+        else if (step == STEP_PAGE.INFO_PAGE){
+                const formatData = formatUserData(answers);
+                await sendUserData(formatData);
+        }
+        if (step === -1) {
+            setStepCookie("step", step + 2, {path: '/'})
+            setStep(step + 2)
+        } else if (step < MAX_PAGES) {
+            setStepCookie("step", step + 1, {path: '/'})
+            setStep(step + 1);
+        } else if (step === MAX_PAGES-1) {
+            setStepCookie("step", pages.length-1, {path: '/'})
+            setStep(pages.length-1);
+        }
     };
 
     const recordingPages = useMemo(() => phonePositions.map((phonePosition, idx) => {
@@ -166,6 +192,30 @@ export const Wizard = (props: any) => {
             />
         )
     }), []);
+
+    const removePreviousSessionCookies = () => {
+        removeStepCookie('step');
+        removeUserCookie('userID');
+        setStep(0);
+        setCanonicalUserID(`user_${uuid.v4()}`);
+        setNewUser(true);
+    };
+
+    const resumePreviousSession = () => {
+        setNewUser(true);
+        if(parseInt(stepCookies.step, 10) >= questions.length + 2){
+          setStep(parseInt(stepCookies.step, 10));
+          setCanonicalUserID(userCookies.userID);
+        } else {
+            removeStepCookie('step');
+            removeUserCookie('userID');
+            setStep(0);
+            const newUserID = `user_${uuid.v4()}`
+            setCanonicalUserID(newUserID);
+            setUserCookie("userID", newUserID, {path: '/'})
+            setNewUser(true);    
+        }
+    };
 
     const pagesBeforeRecordingPages = [
         <ConsentPage
@@ -206,10 +256,6 @@ export const Wizard = (props: any) => {
     const processAudio = async () => {
         if (!recordingBlob) return;
         try {
-            if (step === STEP_PAGE.FIRST_RECORDING) {
-                const formatData = formatUserData(answers);
-                await sendUserData(formatData);
-            }
             const {
                 phoneposition,
                 affect,
@@ -283,6 +329,7 @@ export const Wizard = (props: any) => {
     const closeModal = () => {
         setShowSubmitAudioModal(false);
         setStep(step + 1);
+        setStepCookie("step", step + 1, {path: '/'})
         setAlertMode(ALERT_MODE.INFORM);
     };
 
@@ -307,11 +354,12 @@ export const Wizard = (props: any) => {
     };
 
     const showBackButton =
-        step !== 0 &&
-        step <= STEP_PAGE.FIRST_RECORDING
+        step !== -1
+        && step !== 0
+        && step <= STEP_PAGE.FIRST_RECORDING
 
     const showNextButton =
-        step !== MAX_PAGES;
+        step !== -1 && step !== MAX_PAGES;
 
     const inputItem = () => {
         // this forces the recorder to re-render and restart all of its internal states
@@ -336,6 +384,16 @@ export const Wizard = (props: any) => {
                     padding: 3,
                 }}
             >
+                {
+                    !newUser
+                    && (
+                        <div>
+                            <div>Do you want to resume where you left off?</div>
+                            <Button onClick={resumePreviousSession}>Yes</Button>
+                            <Button onClick={removePreviousSessionCookies}>No</Button>
+                        </div>
+                    )
+                }
                 <Container sx={{ flex: 1 }}>{pages[step]}</Container>
                 <Box
                     sx={{

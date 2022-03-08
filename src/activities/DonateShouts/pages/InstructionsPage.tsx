@@ -41,6 +41,9 @@ export const InstructionsPage = () => {
               </ul>
               When you have finished click "submit" and move on to the next ecording
           </Typography>
+          <Typography>
+            This page uses cookies, if you cannot complete all of the recordings at once you may start where you left off, given your cookies and chache have not been cleared.
+          </Typography>
         </Container>
     );
 };
