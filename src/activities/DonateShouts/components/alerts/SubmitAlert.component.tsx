@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { CircularProgress } from '@mui/material';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -21,7 +22,7 @@ export enum ALERT_MODE {
 interface SubmitAlertProps {
     open: boolean;
     setOpen: (isOpen: boolean) => void;
-    handleAgreeSubmit: () => void;
+    handleAgreeSubmit: (setDisableSubmit: Function) => void;
     alertMode: ALERT_MODE;
     handleClose: () => void;
 }
@@ -35,6 +36,8 @@ export const SubmitAlert = ({
 }: SubmitAlertProps) => {
     const isLoadingModal = alertMode === ALERT_MODE.LOADING;
     const showCancelButton = alertMode === ALERT_MODE.INFORM;
+
+    const [disableSubmit, setDisableSubmit] = useState(false);
 
     const content = () => {
         switch (alertMode) {
@@ -82,9 +85,10 @@ export const SubmitAlert = ({
             case ALERT_MODE.SUCCESS:
                 return handleClose();
             case ALERT_MODE.FAILED:
-                return handleAgreeSubmit();
+                return handleAgreeSubmit(setDisableSubmit);
             case ALERT_MODE.INFORM:
-                return handleAgreeSubmit();
+                setDisableSubmit(true);
+                return handleAgreeSubmit(setDisableSubmit);
             default:
                 return;
         }
@@ -125,6 +129,7 @@ export const SubmitAlert = ({
                         variant="contained"
                         onClick={() => handleCta()}
                         autoFocus
+                        disabled={disableSubmit}
                     >
                         {buttonText()}
                     </Button>

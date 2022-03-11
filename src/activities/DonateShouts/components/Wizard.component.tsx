@@ -253,14 +253,19 @@ export const Wizard = (props: any) => {
         step === STEP_PAGE.FIRST_RECORDING ||
         (step > STEP_PAGE.FIRST_RECORDING && step <  MAX_PAGES);
 
-    const processAudio = async () => {
-        if (!recordingBlob) return;
+    const processAudio = async (setDisableSubmit: Function) => {
+        console.log(canonicalUserID)
+        if (!recordingBlob) {
+            setDisableSubmit(false);
+            return;
+        }
         try {
             const {
                 phoneposition,
                 affect,
                 script,
             } = allRecordingPageData[step - pagesBeforeRecordingPages.length];
+            console.log(`Before sending to S3: ${canonicalUserID}`);
             const fileID = await sendS3(recordingBlob, {
                 userID: canonicalUserID,
                 phoneposition,
@@ -274,14 +279,17 @@ export const Wizard = (props: any) => {
             }
             setAlertMode(ALERT_MODE.SUCCESS);
             setRecordingBlob(undefined);
+            setDisableSubmit(false);
         } catch (e) {
             console.log(e);
             setAlertMode(ALERT_MODE.FAILED);
+            setDisableSubmit(false);
             //TESTING
             //setAlertMode(ALERT_MODE.SUCCESS);
             //console.error("RESETTING RECORDING BLOB EVEN THOUGH IT WAS NOT SUCCESSFUL, REMOVE IN PRODUCTION");
             //setRecordingBlob(undefined);
         }
+        setDisableSubmit(false);
     };
 
     useEffect(() => {
@@ -443,7 +451,7 @@ export const Wizard = (props: any) => {
                 <SubmitAlert
                     open={showSubmitAudioModal}
                     setOpen={setShowSubmitAudioModal}
-                    handleAgreeSubmit={() => processAudio()}
+                    handleAgreeSubmit={(setDisableSubmit: Function) => processAudio(setDisableSubmit)}
                     alertMode={alertMode}
                     handleClose={closeModal}
                 />
