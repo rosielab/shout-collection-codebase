@@ -28,7 +28,7 @@ const scriptObj = {
     4: "another dog secretary show",
     5: "snow meteor down the chimney",
     6: "birds make new jingles",
-    7: "heavy undersea birthday pumkins",
+    7: "heavy undersea birthday pumpkins",
     8: "fluffy baseboard yogurt division",
     9: "zebra cats walking on lamps",
     10: "five special guest treasures",
@@ -84,7 +84,10 @@ function getRandomIntInclusive(min: number, max: number): number {
 
 export const Wizard = (props: any) => {
     const [step, setStep] = useState(-1);
-    const [canonicalUserID, setCanonicalUserID] = useState(`user_${uuid.v4()}`);
+    const {
+        canonicalUserID,
+        setCanonicalUserID,
+    } = props;
     const [answers, setAnswer] = useState<UserAnswersObject>(
         getUserAnswersDefaultState(canonicalUserID)
     );
@@ -94,12 +97,10 @@ export const Wizard = (props: any) => {
 
     useEffect(() => {
         if(userCookies["userID"] === undefined && stepCookies["step"] === undefined) {
-          console.log("new")
           setNewUser(true);
           setUserCookie("userID", canonicalUserID, {path: '/'})
           setStepCookie("step", 0, {path: '/'})
           setStep(0)
-          console.log(canonicalUserID)
         }
       }, [])
 
@@ -199,25 +200,20 @@ export const Wizard = (props: any) => {
         removeStepCookie('step');
         removeUserCookie('userID');
         setStep(0);
-        setCanonicalUserID(`user_${uuid.v4()}`);
-        console.log(canonicalUserID)
+        setUserCookie("userID", canonicalUserID, {path: '/'}) 
         setNewUser(true);
     };
 
     const resumePreviousSession = () => {
+        setNewUser(true);  
         if(parseInt(stepCookies.step, 10) >= questions.length + 2){
-            console.log("cookie ID")
-            console.log(userCookies.userID)
           setStep(parseInt(stepCookies.step, 10));
           setCanonicalUserID(userCookies.userID);
         } else {
             removeStepCookie('step');
             removeUserCookie('userID');
             setStep(0);
-            const newUserID = `user_${uuid.v4()}`
-            setCanonicalUserID(newUserID);
-            setUserCookie("userID", newUserID, {path: '/'})
-            setNewUser(true);    
+            setUserCookie("userID", canonicalUserID, {path: '/'}) 
         }
     };
 
@@ -258,7 +254,6 @@ export const Wizard = (props: any) => {
         (step > STEP_PAGE.FIRST_RECORDING && step <  MAX_PAGES);
 
     const processAudio = async (setDisableSubmit: Function) => {
-        console.log(canonicalUserID)
         if (!recordingBlob) {
             setDisableSubmit(false);
             return;
@@ -269,7 +264,6 @@ export const Wizard = (props: any) => {
                 affect,
                 script,
             } = allRecordingPageData[step - pagesBeforeRecordingPages.length];
-            console.log(`Before sending to S3: ${canonicalUserID}`);
             const fileID = await sendS3(recordingBlob, {
                 userID: canonicalUserID,
                 phoneposition,

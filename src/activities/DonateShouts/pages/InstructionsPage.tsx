@@ -39,10 +39,10 @@ export const InstructionsPage = () => {
                   <li>say "b" and shout the phrase</li>
                   <li>say "c" and scream the phrase</li>
               </ul>
-              When you have finished click "submit" and move on to the next ecording
+              When you have finished click "submit" and move on to the next recording
           </Typography>
           <Typography>
-            This page uses cookies, if you cannot complete all of the recordings at once you may start where you left off, given your cookies and chache have not been cleared.
+            This page uses cookies, if you cannot complete all of the recordings at once you may start where you left off, given your cookies and cache have not been cleared.
           </Typography>
         </Container>
     );
