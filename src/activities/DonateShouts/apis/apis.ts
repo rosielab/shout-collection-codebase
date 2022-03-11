@@ -1,8 +1,6 @@
 import axios from 'axios';
 import * as uuid from 'uuid';
 
-const BASE_URL = "http://localhost:8080/api"; //Change to env var
-
 
 /**
  * Send Audio to Amazon's S3 cloud storage

@@ -94,10 +94,12 @@ export const Wizard = (props: any) => {
 
     useEffect(() => {
         if(userCookies["userID"] === undefined && stepCookies["step"] === undefined) {
+          console.log("new")
           setNewUser(true);
           setUserCookie("userID", canonicalUserID, {path: '/'})
           setStepCookie("step", 0, {path: '/'})
           setStep(0)
+          console.log(canonicalUserID)
         }
       }, [])
 
@@ -155,7 +157,7 @@ export const Wizard = (props: any) => {
             setShowSubmitAudioModal(true);
             return;
         }
-        else if (step == STEP_PAGE.INFO_PAGE){
+        else if (step === STEP_PAGE.INFO_PAGE){
                 const formatData = formatUserData(answers);
                 await sendUserData(formatData);
         }
@@ -198,12 +200,14 @@ export const Wizard = (props: any) => {
         removeUserCookie('userID');
         setStep(0);
         setCanonicalUserID(`user_${uuid.v4()}`);
+        console.log(canonicalUserID)
         setNewUser(true);
     };
 
     const resumePreviousSession = () => {
-        setNewUser(true);
         if(parseInt(stepCookies.step, 10) >= questions.length + 2){
+            console.log("cookie ID")
+            console.log(userCookies.userID)
           setStep(parseInt(stepCookies.step, 10));
           setCanonicalUserID(userCookies.userID);
         } else {
