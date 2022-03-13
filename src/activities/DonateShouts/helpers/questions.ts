@@ -49,18 +49,18 @@ export const questions: Array<UserQuestion> = [
                 'Our website will have features in the feature for you to learn more about our discoveries. Check back later!',
         },
     },
-      {
-          question: 'What is your gender?',
-          options: [
-              'Man',
-              'Woman',
-              'Non-Binary',
-              'Other',
-              'Prefer not to disclose',
-          ],
-          type: 'radio',
-          key: 'gender'
-      },
+    {
+        question: 'What is your gender?',
+        options: [
+            'Man',
+            'Woman',
+            'Non-Binary',
+            'Other',
+            'Prefer not to disclose',
+        ],
+        type: 'radio',
+        key: 'gender',
+    },
     {
         question: 'What is the the first language you learned?',
         key: 'firstLanguage',
