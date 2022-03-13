@@ -9,7 +9,7 @@ export const consentInfo = [
     },
     {
         title: 'Procedures',
-        body: "Upon agreeing to this consent form, follow the steps provided by hitting 'next'. Be aware of any disturbances you may contribute to your surroundings. Please begin by filling out the pre-study questionnaire.Next, following the study instructions you will be recording yourself speaking, shouting and screaming several phrases with your phone in different positions around your home. The collection should takeapproximately 30 minutes.",
+        body: "Upon agreeing to this consent form, follow the steps provided by hitting 'next'. Be aware of any disturbances you may contribute to your surroundings. Please begin by filling out the pre-study questionnaire. Next, following the study instructions you will be recording yourself speaking, shouting and screaming several phrases with your phone in different positions around your home. The collection should take approximately 30 minutes.",
     },
     {
         title: 'Data Retention',
