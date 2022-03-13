@@ -32,7 +32,7 @@ export const ConsentPage = ({
             </Typography>
             <Typography variant="body1" sx={{ marginBottom: 2 }}>
                 We are collecting emotional shout data to help us better detect
-                this behavious in order to improve the saftery of those living
+                this behavior in order to improve the safety of those living
                 with intimate partner violence.
             </Typography>
             <Typography sx={{ marginBottom: 3 }}>

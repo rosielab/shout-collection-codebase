@@ -13,7 +13,7 @@ export const consentInfo = [
     },
     {
         title: 'Data Retention',
-        body: "Data provided will be stored in a database for the use of future researchers. The data will be stored in Haiven's Amazon Web Services (AWS) S3 bucket on Canadian servers. The data will be free to use for research purposes. Commercial use of the data will be with a paid license, however, use for commercial purposes will require explicit approval by the board and the use cases must not violate Haiven's mission, vision or core values. You are able to consent to having your data only used for research purposes, or for both research and non Haiven commercial purposes.",
+        body: "Data provided will be stored in a database for the use of future researchers. The data will be stored in Haiven's Amazon Web Services (AWS) S3 bucket on Canadian servers. and be free to use for research purposes. Commercial use of the data will be require a paid license, and explicit approval by the board and the use cases must not violate Haiven's mission, vision or core values. You are able to consent to having your data only used for research purposes, or for both research and non Haiven commercial purposes.",
     },
     {
         title: 'Risks/Discomforts',
@@ -33,7 +33,7 @@ export const consentInfo = [
     },
     {
         title: 'Inclusion and Exclusion Criteria',
-        body: 'We set inclusion criteria as those 18 years of age or older and have access to a mobile phone with recording capabilities. Participants should have a sufficient level of English comprehension to understand the consent obligations and follow the written study instructions. Exclusion criteria is anyone under the age of 18 years old and does not have access to a mobile phone able to record and is not able to read and understand the consent form and study instructions.',
+        body: 'We set inclusion criteria as those 18 years of age or older and have access to a mobile phone with recording capabilities. Participants should have a sufficient level of English comprehension to understand the consent obligations and follow the written study instructions. Exclusion criteria includes anyone that is: under the age of 18 years old or does not have access to a mobile phone able to record or is unable to read and understand the consent form and study instructions.',
     },
     {
         title: 'Contact Information',
