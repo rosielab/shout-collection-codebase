@@ -6,11 +6,19 @@ interface RecordingPageProps {
     affect: string;
 }
 
-export const RecordingPage = ({ phonePosition, script, affect }: RecordingPageProps) => {
+export const RecordingPage = ({
+    phonePosition,
+    script,
+    affect,
+}: RecordingPageProps) => {
     const PhonePosition = () => {
         return (
             <Container sx={{ paddingX: 0 }}>
-                <Typography variant="h5" fontWeight="fontWeightBold" sx={{ fontSize: {xs: 18, sm: 18, md: 24 } }}>
+                <Typography
+                    variant="h5"
+                    fontWeight="fontWeightBold"
+                    sx={{ fontSize: { xs: 18, sm: 18, md: 24 } }}
+                >
                     {phonePosition}
                 </Typography>
             </Container>
@@ -22,10 +30,14 @@ export const RecordingPage = ({ phonePosition, script, affect }: RecordingPagePr
             <Container sx={{ paddingX: 0 }}>
                 <Typography
                     variant="h5"
-                    sx={{ color: 'primary.dark', margin: 2, fontSize: {xs: 18, sm: 18, md: 24 }}}
+                    sx={{
+                        color: 'primary.dark',
+                        margin: 2,
+                        fontSize: { xs: 18, sm: 18, md: 24 },
+                    }}
                     fontWeight="fontWeightBold"
                 >
-                  Please use this emotion: {affect} 
+                    Please use this emotion: {affect}
                 </Typography>
             </Container>
         );
@@ -34,18 +46,37 @@ export const RecordingPage = ({ phonePosition, script, affect }: RecordingPagePr
     const Script = () => {
         return (
             <Container sx={{ paddingX: 0 }}>
-                <Typography variant="h5" fontWeight="fontWeightBold"  sx={{ fontSize: {xs: 18, sm: 18, md: 24 } }}>
-                  Speak:  "a, {script}"
+                <Typography
+                    variant="h5"
+                    fontWeight="fontWeightBold"
+                    sx={{ fontSize: { xs: 18, sm: 18, md: 24 } }}
+                >
+                    Speak: "a, {script}"
                 </Typography>
-                <Typography variant="h5" fontWeight="fontWeightBold" sx={{ fontSize: {xs: 18, sm: 18, md: 24 } }}>
-                  Shout: "b, {script}"
+                <Typography
+                    variant="h5"
+                    fontWeight="fontWeightBold"
+                    sx={{ fontSize: { xs: 18, sm: 18, md: 24 } }}
+                >
+                    Shout: "b, {script}"
                 </Typography>
-                <Typography variant="h5"  fontWeight="fontWeightBold" sx={{ marginBottom: 4 , fontSize: {xs: 18, sm: 18, md: 24 } }}>
-                  Scream: "c, {script}"
+                <Typography
+                    variant="h5"
+                    fontWeight="fontWeightBold"
+                    sx={{
+                        marginBottom: 4,
+                        fontSize: { xs: 18, sm: 18, md: 24 },
+                    }}
+                >
+                    Scream: "c, {script}"
                 </Typography>
-                <Typography variant="h5" sx={{ fontSize: {xs: 18, sm: 18, md: 24 } }}>
-                  You may listen to your audio and record as many times as you like, do not worry about
-                  any background noises, we want those! Click next to submit.
+                <Typography
+                    variant="h5"
+                    sx={{ fontSize: { xs: 18, sm: 18, md: 24 } }}
+                >
+                    You may listen to your audio and record as many times as you
+                    like, do not worry about any background noises, we want
+                    those! Click next to submit.
                 </Typography>
             </Container>
         );
@@ -60,7 +91,7 @@ export const RecordingPage = ({ phonePosition, script, affect }: RecordingPagePr
                 justifyContent: 'center',
                 textAlign: 'center',
                 marginBottom: 3,
-                paddingX: 0
+                paddingX: 0,
             }}
         >
             <PhonePosition />
