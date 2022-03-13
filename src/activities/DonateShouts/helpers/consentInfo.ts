@@ -13,7 +13,7 @@ export const consentInfo = [
     },
     {
         title: 'Data Retention',
-        body: 'Data provided will be stored in a database for the use of future researchers. The data will be stored in Haiven’s Amazon Web Services (AWS) S3 bucket on Canadian servers. The data will be free to use for research purposes. Commercial use of the data will be with a paid license, however, use for commercial purposes will require explicit approval by the board and the use cases must not violate Haiven’s mission, vision or core values. You are able to consent to having your data only used for research purposes, or for both research and non Haiven commercial purposes.',
+        body: "Data provided will be stored in a database for the use of future researchers. The data will be stored in Haiven's Amazon Web Services (AWS) S3 bucket on Canadian servers. The data will be free to use for research purposes. Commercial use of the data will be with a paid license, however, use for commercial purposes will require explicit approval by the board and the use cases must not violate Haiven's mission, vision or core values. You are able to consent to having your data only used for research purposes, or for both research and non Haiven commercial purposes.",
     },
     {
         title: 'Risks/Discomforts',
