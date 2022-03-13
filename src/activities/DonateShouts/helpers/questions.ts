@@ -32,7 +32,7 @@ const AGE_RANGES = {
 
 export const questions: Array<UserQuestion> = [
     {
-        question: 'What is your age',
+        question: 'What is your age?',
         options: [
             AGE_RANGES.UNDER_18,
             AGE_RANGES.AGE_18_24,
@@ -46,7 +46,7 @@ export const questions: Array<UserQuestion> = [
             condition: AGE_RANGES.UNDER_18,
             title: "Unfortunately, you cannot participate if you're under 18",
             message:
-                'Our website will have features in the feature for you to learn more about our discoveries. Check back later!',
+                'Our website will have features in the future for you to learn more about our discoveries. Check back later!',
         },
     },
     {
