@@ -4,9 +4,7 @@ import {
     FormControlLabel,
     Typography,
 } from '@mui/material';
-import {
-    UserAnswersObject,
-} from '../helpers/userAnswers';
+import { UserAnswersObject } from '../helpers/userAnswers';
 import { consentInfo } from '../helpers/consentInfo';
 
 interface ConsentPageProps {
@@ -33,9 +31,9 @@ export const ConsentPage = ({
                 Shouting Data Collection
             </Typography>
             <Typography variant="body1" sx={{ marginBottom: 2 }}>
-              We are collecting emotional shout data to help us better detect this
-              behavious in order to improve the saftery of those living with intimate
-              partner violence.
+                We are collecting emotional shout data to help us better detect
+                this behavious in order to improve the saftery of those living
+                with intimate partner violence.
             </Typography>
             <Typography sx={{ marginBottom: 3 }}>
                 <b>
@@ -73,7 +71,7 @@ export const ConsentPage = ({
                                     return {
                                         ...oldAnswer,
                                         consentresearch: e.target.checked,
-                                    }
+                                    };
                                 });
                                 setHasUserConsentResearch(e.target.checked);
                             }}
@@ -82,9 +80,9 @@ export const ConsentPage = ({
                     }
                     label="I have read and accept the consent form and would like to include my data for Research Purposes"
                 />
-             </Container>
+            </Container>
 
-             <Container>
+            <Container>
                 <FormControlLabel
                     control={
                         <Checkbox
@@ -93,9 +91,9 @@ export const ConsentPage = ({
                                     return {
                                         ...oldAnswer,
                                         consentcommercial: e.target.checked,
-                                    }
+                                    };
                                 });
-                                setHasUserConsentCommercial(e.target.checked)
+                                setHasUserConsentCommercial(e.target.checked);
                             }}
                             checked={hasUserConsentCommercial}
                         />
@@ -112,8 +110,8 @@ export const ConsentPage = ({
                             color: 'red',
                         }}
                     >
-                        You will have to accept at least one option and read the consent form to
-                        participate.
+                        You will have to accept at least one option and read the
+                        consent form to participate.
                     </Typography>
                 )}
             </Container>
