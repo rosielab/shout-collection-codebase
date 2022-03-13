@@ -71,7 +71,7 @@ export default function Home() {
     const activityList = [
         {
             header: 'Donate your shouts',
-            body: 'Click here to help us improve safety of those living with intimate partner violence by better understanding shouted speech',
+            body: 'Click here to help us improve safety of those living with intimate partner violence by helping us better understand shouted speech',
             onclick: () => handleClick(routePaths.DONATE_SHOUTS),
         },
     ];
