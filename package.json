@@ -1,5 +1,6 @@
 {
-    "name": "citizen-science",
+    "name": "shout-detection",
+    "homepage": "https://rosielab.github.io/shoutdetection.github.io/",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
