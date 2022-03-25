@@ -1,7 +1,7 @@
 export const consentInfo = [
     {
         title: 'Task Details',
-        body: 'You are invited to take part in our collection of shout and scream data. We will be collecting some demographic data to help us understand your voice. Participants will read from a script while moving their phone to various positions around their home. This data will be used in projects to help us detect screams and shouts in two project. The first is an app being built in conjunction with the non-profit organization Haiven to improve the lives of those living with domestic violence. The second is to detect which emotion is being expressed through shouts so that robot agents can better adapt their behaviour to the current context.',
+        body: 'You are invited to take part in our collection of shout and scream data. We will be collecting some demographic data to help us understand your voice. Participants will read from a script while moving their phone to various positions around their home. This data will be used in projects to help us detect screams and shouts in two projects. The first is an app being built in conjunction with the non-profit organization Haiven that detects and flags shouted speech from recordings to help those living with intimate partner violence track potentially problematic situations that can later be manually annotated by the user. The second is to detect which emotion is being expressed through shouts so that robot agents can better adapt their behaviour to the current context.',
     },
     {
         title: 'Voluntary Participation and Right to Withdraw',

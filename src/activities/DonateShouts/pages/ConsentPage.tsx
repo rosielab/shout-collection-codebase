@@ -33,7 +33,7 @@ export const ConsentPage = ({
             <Typography variant="body1" sx={{ marginBottom: 2 }}>
                 Researchers at Simon Fraser University are collecting emotional shout 
                 data to help us better detect this behaviour in order to improve detection 
-                of shouts for multiple uses including robotic assistants and improving safety 
+                of shouts for multiple uses including robotic assistants and improving the lives 
                 of those living with intimate partner violence.
             </Typography>
             <Typography sx={{ marginBottom: 3 }}>

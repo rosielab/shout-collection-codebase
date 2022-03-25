@@ -45,7 +45,7 @@ export const OurPurpose = () => {
           Haiven's Mission
       </Typography>
       <Typography variant="body1" sx={{ marginBottom: 2 }}>
-        Our mission is to provide victims and survivors of abuse with software services to improve their safety,
+        Our mission is to provide victims and survivors of abuse with software services to improve their
         well-being and independence. Haiven is addressing not only the crisis of intimate partner violence but also the
         aftermath by supporting those living with and surviving domestic violence, supporting agency, empowerment
         and security by providing guided access to our network of partnerships.
