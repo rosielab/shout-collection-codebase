@@ -31,9 +31,10 @@ export const ConsentPage = ({
                 Shouting Data Collection
             </Typography>
             <Typography variant="body1" sx={{ marginBottom: 2 }}>
-                We are collecting emotional shout data to help us better detect
-                this behaviour in order to improve the safety of those living
-                with intimate partner violence.
+                Researchers at Simon Fraser University are collecting emotional shout 
+                data to help us better detect this behaviour in order to improve detection 
+                of shouts for multiple uses including robotic assistants and improving safety 
+                of those living with intimate partner violence.
             </Typography>
             <Typography sx={{ marginBottom: 3 }}>
                 <b>
@@ -70,26 +71,6 @@ export const ConsentPage = ({
                                 setAnswer((oldAnswer: UserAnswersObject) => {
                                     return {
                                         ...oldAnswer,
-                                        consentresearch: e.target.checked,
-                                    };
-                                });
-                                setHasUserConsentResearch(e.target.checked);
-                            }}
-                            checked={hasUserConsentResearch}
-                        />
-                    }
-                    label="I have read and accept the consent form and would like to include my data for Research Purposes"
-                />
-            </Container>
-
-            <Container>
-                <FormControlLabel
-                    control={
-                        <Checkbox
-                            onChange={(e) => {
-                                setAnswer((oldAnswer: UserAnswersObject) => {
-                                    return {
-                                        ...oldAnswer,
                                         consentcommercial: e.target.checked,
                                     };
                                 });
@@ -98,7 +79,7 @@ export const ConsentPage = ({
                             checked={hasUserConsentCommercial}
                         />
                     }
-                    label="I have read and accept the consent form and would like to include my data for Non Haiven Commercial Purposes"
+                    label="I have read and accept the consent form"
                 />
 
                 {!hasUserConsentResearch && !hasUserConsentCommercial && (

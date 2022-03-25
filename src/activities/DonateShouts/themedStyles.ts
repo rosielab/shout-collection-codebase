@@ -16,27 +16,27 @@ declare module '@mui/material/styles' {
 export const themedStyles = createTheme({
     palette: {
         primary: {
-            light: '#7DBCFF',
-            main: '#7DBCFF',
-            dark: '#7DBCFF',
+            light: '#db848f',
+            main: '#db848f',
+            dark: '#db848f',
             contrastText: '#fff',
         },
         neutral: {
-            light: '#7DBCFF',
-            main: '#7DBCFF',
-            dark: '#7DBCFF',
+            light: '#db848f',
+            main: '#db848f',
+            dark: '#db848f',
         },
     },
     components: {
         MuiFilledInput: {
             styleOverrides: {
                 root: {
-                    backgroundColor: '#7DBCFF',
+                    backgroundColor: '#db848f',
                     '&:hover': {
-                        backgroundColor: '#7DBCFF',
+                        backgroundColor: '#db848f',
                     },
                     '&.Mui-focused': {
-                        backgroundColor: '#7DBCFF',
+                        backgroundColor: '#db848f',
                     },
                 },
             },
@@ -45,7 +45,7 @@ export const themedStyles = createTheme({
             styleOverrides: {
                 root: {
                     '&.Mui-focused': {
-                        color: '#7DBCFF',
+                        color: '#db848f',
                     },
                 },
             },

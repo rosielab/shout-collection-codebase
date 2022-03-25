@@ -412,7 +412,7 @@ export const Wizard = (props: any) => {
                         <Button
                             variant="contained"
                             style={{
-                                backgroundColor: "#7DBCFF",
+                                backgroundColor: "#db848f",
                             }}
                             sx={{
                                 order: { xs: 1, sm: 0 },
@@ -430,7 +430,7 @@ export const Wizard = (props: any) => {
                         <Button
                             variant="contained"
                             style={{
-                                backgroundColor: "#7DBCFF",
+                                backgroundColor: "#db848f",
                             }}
                             onClick={handleNextStep}
                             disabled={!canGoToNext()}
