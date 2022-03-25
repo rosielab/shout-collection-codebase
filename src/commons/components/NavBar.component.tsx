@@ -44,7 +44,7 @@ const NavBar = () => {
     );
 
     return (
-        <AppBar position="static" sx={{ backgroundColor: '#7DBCFF' }}>
+        <AppBar position="static" sx={{ backgroundColor: '#db848f' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography
@@ -110,7 +110,7 @@ const NavBar = () => {
                             cursor: 'pointer',
                         }}
                     >
-                        Haiven Shout Collection
+                        ROSIE Lab Shout Collection
                     </Typography>
                     <Box
                         sx={{
