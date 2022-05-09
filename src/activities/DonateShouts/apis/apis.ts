@@ -13,7 +13,7 @@ import * as uuid from 'uuid';
             } 
  */
 export async function sendS3(blob: Blob, metaData: any) {
-    const URL = `https://9ml78r5eaj.execute-api.ca-central-1.amazonaws.com/dev/haiven-shout-data-collect-GetPresignedUrlAndStoreM-vGxHgxBaP0LD`;
+    const URL = ` https://xu5j2jyxbf.execute-api.ca-central-1.amazonaws.com/dev/haiven-shout-data-collect-GetPresignedUrlAndStoreM-Q0c9eohPcVNG`;
     let id: string = uuid.v4();
     let fileName = `shout_data_${id}`;
     let fileType = 'audio/wav';
