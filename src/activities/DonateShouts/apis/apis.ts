@@ -53,7 +53,7 @@ export async function sendS3(blob: Blob, metaData: any) {
 export async function sendUserData(data: any) {
     if (!URL) throw new Error(`No USER DATA ENDPOINT`);
     try {
-        const response = await axios.post("https://a7uhkhvmh3.execute-api.ca-central-1.amazonaws.com/default/haiven-shout-data-collect-WriteUserDataToDynamoFun-bENtV8zxlg0V", data, {
+        const response = await axios.post("https://1zfqlslz47.execute-api.ca-central-1.amazonaws.com/dev/haiven-shout-data-collect-WriteUserDataToDynamoFun-MBA829CIx5dT", data, {
             headers: {
                 'content-type': 'application/json',
             },
