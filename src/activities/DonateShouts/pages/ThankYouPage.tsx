@@ -15,7 +15,7 @@ export const ThankYouPage = () => {
                 Thank you very much for submitting your voice!
             </Typography>
             <Typography variant="body1" sx={{ marginBottom: 1 }}>
-                Take a screenshot of this page and email hello.haiven@gmail.com
+                Take a screenshot of this page and email ptuttosi@sfu.ca
                 to receive a participation certificate!
             </Typography>
             <Typography variant="body1" sx={{ marginBottom: 1 }}>
