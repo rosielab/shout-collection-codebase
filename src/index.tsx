@@ -4,12 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { CookiesProvider } from 'react-cookie';
+import { HashRouter } from 'react-router-dom';
 
 ReactDOM.render(
     <React.StrictMode>
+      <HashRouter
+        basename={'/shoutcollection'}
+      >
         <CookiesProvider>
           <App />
         </CookiesProvider>
+      </HashRouter>
     </React.StrictMode>,
     document.getElementById('root')
 );

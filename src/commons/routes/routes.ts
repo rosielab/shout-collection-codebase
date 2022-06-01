@@ -3,9 +3,9 @@ import { DontateShouts } from '../../activities/DonateShouts/DonateShouts.compon
 import { OurPurpose } from '../pages/OurPurpose';
 
 export const routePaths = {
-    ACTIVITIES: '/',
-    DONATE_SHOUTS: '/donateShouts',
-    OUR_PURPOSE: '/ourPurpose',
+    ACTIVITIES: '/shoutcollection/',
+    DONATE_SHOUTS: '/shoutcollection/donateShouts',
+    OUR_PURPOSE: '/shoutcollection/ourPurpose',
 };
 
 export const routes = [

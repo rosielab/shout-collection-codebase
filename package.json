@@ -1,6 +1,6 @@
 {
     "name": "shout-detection",
-    "homepage": "https://rosielab.github.io/",
+    "homepage": "https://rosielab.github.io/shoutcollection/",
     "version": "0.1.0",
     "private": true,
     "dependencies": {

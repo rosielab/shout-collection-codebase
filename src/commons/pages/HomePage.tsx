@@ -39,13 +39,13 @@ const WebsiteInfo = () => {
                       We believe that robots can help us automate simple, repetitive
                       tasks while bringing joy to our lives. If you want to
                       know more about ROSIE LAB please see {}
-                      <Link href="https://www.rosielab.ca/" underline="none">
+                      <Link href="https://www.rosielab.ca/shoutcollection/" underline="none">
                           our website
                       </Link>
                       . We are currently working with Haiven, a non profit organization 
                       improving the lives of those living with intimate partner violence,
                       to learn more about Haiven please see {}
-                      <Link href="/ourPurpose" underline="none">
+                      <Link href="/shoutcollection/ourPurpose" underline="none">
                           Our Purpose
                       </Link>
                       . We thank you very much for your support and
