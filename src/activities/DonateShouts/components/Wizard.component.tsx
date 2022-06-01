@@ -128,6 +128,13 @@ export const Wizard = (props: any) => {
     const [hasUserConsentCommercial, setHasUserConsentCommercial] = useState<boolean>(false);
     const [allRecordingPageData, setAllRecordingPageData] = useState<Array<RecordingPageData>>([]);
 
+    // Focus on next button so that you can click enter to go next
+    const focusOnNext = () => {
+        if (showNextButton) {
+            // @ts-ignore
+            nextButton?.current?.focus();
+        }
+    };
 
     const handleAnswerChange = useCallback((answer: UserAnswersObject) => {
         setAnswer(answer);
@@ -232,6 +239,7 @@ export const Wizard = (props: any) => {
                 question={question}
                 answers={answers}
                 setAnswer={handleAnswerChange}
+                focusOnNext={focusOnNext}
             />
         )),
         <InstructionsPage/>,

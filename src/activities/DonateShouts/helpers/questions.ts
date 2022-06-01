@@ -1,3 +1,7 @@
+import {
+    InputValidation,
+} from '../components/fieldTypes/FieldType.component';
+
 interface FollowUpQuestion {
     condition: {
         key: string;
@@ -20,6 +24,7 @@ export interface UserQuestion {
     clearIfChange?: Array<string>;
     requireAlert?: AlertRequiredData;
     showCheckboxOptional?: boolean;
+    validation?: InputValidation;
 }
 
 const AGE_RANGES = {
@@ -30,7 +35,7 @@ const AGE_RANGES = {
     AGE_60_OVER: '60 and over',
 };
 
-export const questions: Array<UserQuestion> = [
+export const questions: Array<UserQuestion > = [
     {
         question: 'What is your age?',
         options: [
@@ -56,10 +61,32 @@ export const questions: Array<UserQuestion> = [
             'Woman',
             'Non-Binary',
             'Other',
+            'Prefer to self-describe',
             'Prefer not to disclose',
         ],
         type: 'radio',
         key: 'gender',
+        clearIfChange: ['describedIdentity'],
+        followUpQuestions: [
+            {
+                question: 'Self-Describe:',
+                options: [''],
+                type: 'text',
+                key: 'describedIdentity',
+                condition: {
+                    key: 'gender',
+                    answer: 'Prefer to self-describe',
+                },
+                validation: {
+                    errorMessage:
+                        "Please ensure only allowed characters are used: A-Z, a-z, -, +, ., :, ;, ', comma and input is less than 60 characters",
+                    inputValidationRules: {
+                        maxLength: 60,
+                        pattern: "^[a-zA-Z \\-+'.,:;]+$",
+                    },
+                },
+            },
+        ]
     },
     {
         question: 'What is the the first language you learned?',

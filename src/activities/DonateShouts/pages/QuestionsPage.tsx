@@ -14,13 +14,62 @@ interface QuestionsPageProps {
         cta?: () => void,
         buttonTitle?: string
     ) => void;
+    focusOnNext: () => void;
 }
+
+const AdditionalQuestionField = ({
+    additionalQuestion,
+    handleChange,
+    getCurVal,
+    answers,
+    focusOnNext,
+}: any) => {
+    const questionHasNoConditions = additionalQuestion?.condition === null;
+    const questionConditionIsFullfilled =
+        additionalQuestion?.condition?.answer ===
+        answers[additionalQuestion?.condition?.key];
+    const showAdditionalQuestion =
+        questionHasNoConditions || questionConditionIsFullfilled;
+
+    if (showAdditionalQuestion) {
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <FieldType
+                    handleChange={handleChange}
+                    getCurVal={getCurVal}
+                    key={additionalQuestion.key}
+                    question={additionalQuestion.question}
+                    answerKey={additionalQuestion.key}
+                    options={additionalQuestion.options}
+                    questionType={additionalQuestion.type}
+                    keysToClear={additionalQuestion?.clearIfChange}
+                    validation={additionalQuestion?.validation}
+                    focusOnNext={focusOnNext}
+                />
+                {additionalQuestion?.showCheckboxOptional && (
+                    <FieldType
+                        handleChange={handleChange}
+                        getCurVal={getCurVal}
+                        answerKey={additionalQuestion.key}
+                        options={['Prefer not to disclose']}
+                        questionType={'checkbox'}
+                        keysToClear={additionalQuestion?.clearIfChange}
+                        validation={additionalQuestion?.validation}
+                        focusOnNext={focusOnNext}
+                    />
+                )}
+            </div>
+        );
+    }
+    return <></>;
+};
 
 export const QuestionsPage = ({
     question,
     answers,
     setAnswer,
     triggerAlert,
+    focusOnNext,
 }: QuestionsPageProps) => {
     let history = useHistory();
 
@@ -67,6 +116,30 @@ export const QuestionsPage = ({
                 questionType={question.type}
                 keysToClear={question?.clearIfChange}
             />
+            {question?.followUpQuestions &&
+                question.followUpQuestions.map((additionalQuestion: any) => (
+                    <AdditionalQuestionField
+                        answers={answers}
+                        handleChange={handleChange}
+                        getCurVal={getCurVal}
+                        key={additionalQuestion.key}
+                        additionalQuestion={additionalQuestion}
+                        validation={additionalQuestion?.validation}
+                        focusOnNext={focusOnNext}
+                    />
+                ))}
+            {question?.showCheckboxOptional && (
+                <FieldType
+                    handleChange={handleChange}
+                    getCurVal={getCurVal}
+                    answerKey={question.key}
+                    options={['Prefer not to disclose']}
+                    questionType={'checkbox'}
+                    keysToClear={question?.clearIfChange}
+                    validation={question?.validation}
+                    focusOnNext={focusOnNext}
+                />
+            )}
         </Container>
     );
 };

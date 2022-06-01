@@ -11,6 +11,8 @@ import {
     Typography,
 } from '@mui/material';
 
+import { areStringAnswerRequirementsMet } from '../../helpers/validator';
+
 interface FieldTypeProps {
     answerKey: string;
     options: Array<string>;
@@ -18,7 +20,19 @@ interface FieldTypeProps {
     question?: string;
     getCurVal: (key: string) => string;
     handleChange: (key: string, value: any, keysToClear: string) => void;
+    focusOnNext?: () => void;
+    validation?: InputValidation; // validation currently only works on text
     keysToClear: string; // these are the answer keys that need to be cleared if the answer to this question changes
+}
+
+export interface InputValidation {
+    inputValidationRules?: InputValidateOptions;
+    errorMessage: String;
+}
+
+export interface InputValidateOptions {
+    pattern?: string;
+    maxLength?: number;
 }
 
 export const FieldType = ({
@@ -29,6 +43,8 @@ export const FieldType = ({
     getCurVal,
     handleChange,
     keysToClear,
+    validation,
+    focusOnNext,
 }: FieldTypeProps) => {
     switch (questionType) {
         case 'radio': {
@@ -62,6 +78,14 @@ export const FieldType = ({
             );
         }
         case 'text': {
+            const areRequirementsMet = areStringAnswerRequirementsMet(
+                getCurVal(answerKey),
+                validation?.inputValidationRules
+            );
+            const helperText = areRequirementsMet
+                ? ''
+                : validation?.errorMessage;
+
             return (
                 <>
                     <Typography sx={{ fontWeight: 'bold', marginBottom: 2 }}>
@@ -70,13 +94,23 @@ export const FieldType = ({
                     <TextField
                         autoFocus
                         label={'Type an answer'}
-                        sx={{ width: '25ch' }}
+                        sx={{
+                            width: '25ch',
+                        }}
+                        onKeyPress={(e) => {
+                            if (e.key === 'Enter' && focusOnNext) {
+                                focusOnNext();
+                            }
+                        }}
+                        error={!areRequirementsMet}
                         value={getCurVal(answerKey) || ''}
                         onChange={(e) =>
                             handleChange(answerKey, e.target.value, keysToClear)
                         }
+                        helperText={helperText}
                         inputProps={{
                             autoComplete: 'off', // disable autocomplete and autofill
+                            ...validation?.inputValidationRules,
                         }}
                     />
                 </>

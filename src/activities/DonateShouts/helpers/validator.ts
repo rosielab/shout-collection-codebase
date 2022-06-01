@@ -1,5 +1,34 @@
 import { UserAnswersObject, UserAnswersObjectKeys } from './userAnswers';
 import { UserQuestion } from './questions';
+import { InputValidateOptions } from '../components/fieldTypes/FieldType.component';
+
+export const areStringAnswerRequirementsMet = (
+    value: string,
+    validation?: InputValidateOptions
+) => {
+    // If a value doesn't have a validation associated with it, it is automatically true
+    if (!validation) {
+        return true;
+    }
+
+    if (validation?.pattern && validation?.maxLength) {
+        return (
+            new RegExp(validation.pattern, 'i').test(value) &&
+            (value || '').length < validation.maxLength
+        );
+    }
+
+    if (validation?.pattern) {
+        return new RegExp(validation.pattern, 'i').test(value);
+    }
+
+    if (validation?.maxLength) {
+        return (value || '').length <= validation.maxLength;
+    }
+
+    return true;
+};
+
 
 export const userQuestionAnswerValid = (
     answers: UserAnswersObject,

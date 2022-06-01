@@ -2,6 +2,7 @@ export interface UserAnswersObject {
     userID: string;
     age: string | null;
     gender: string | null;
+    describedIdentity: string | null;
     firstLanguage: string | null;
     currentLanguage: string | null;
     phoneModel: string | null;
@@ -18,6 +19,7 @@ export const getUserAnswersDefaultState = (
         userID: canonicalUserID,
         age: null,
         gender: null,
+        describedIdentity: null,
         firstLanguage: null,
         currentLanguage: null,
         phoneModel: null,

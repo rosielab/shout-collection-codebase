@@ -20,6 +20,10 @@ export const consentInfo = [
         body: 'We do not think there is anything in this study that could harm you. It should be noted that this study will involve the need to repeatedly yell random phrases such as "banana and mustard sandwiches", if you are concerned that this may cause your neighbours distress or result in punitive action please make them aware and check your surroundings before participating in the study. We suggest that you schedule a time with the researchers by emailing ptuttosi@sfu.ca to complete your participation in person at SFU if you are concerned about your ability to scream in your own home as neither Haiven nor ROSIE Lab will be held responsible for repercussions of this activity.',
     },
     {
+        title: 'Conflict of Interest Disclosure',
+        body: 'PhD Candidate and co-investigator Paige Tuttosi is a co-founder of the non-profit organization Haiven Technologies Association. A secondary use of the study data is to provide it to Haiven as part of the deliverables of the MITACS grant who are funding the study.'
+    },
+    {
         title: 'Benefits',
         body: 'Although it may not directly benefit you, this study will benefit society by providing data for researchers understanding screams and the emotions they convey. Future use cases include scream and shout detection in applications monitoring violence and improving robots abilities to adapt to human emotions or distress.',
     },
